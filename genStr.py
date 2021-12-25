@@ -17,8 +17,8 @@ from pyrogram.errors import (
 
 bot = Bot()
 
-API_TEXT = """Hi {}
-Welcome to Pyrogram's `HU_STRING_SESSION` generator Bot.
+API_TEXT = """Hii {}
+I am Pyrogram session string generator bot, i can generate pyrogram session string for userbots.
 
 `Send your API_ID to Continue.`"""
 HASH_TEXT = "`Send your API_HASH to Continue.`\n\nPress /cancel to Cancel."
