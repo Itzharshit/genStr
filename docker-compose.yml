@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  worker:
+    build: .
+    environment:
+      API_ID: $API_ID
+      API_HASH: $API_HASH
+      BOT_TOKEN: $BOT_TOKEN
+      API_KEY: $API_KEY  # defaults to None
+      APP_NAME: $APP_NAME  # defaults to None
+      
