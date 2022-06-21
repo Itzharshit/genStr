@@ -143,27 +143,12 @@ async def genStr(bot: Bot, msg: Message):
     return await bot.sleep(msg)
 
 
-@bot.on_message(filters.private & filters.user(1158855661) & filters.command("restart"))
+@bot.on_message(filters.private & filters.user(1607263889) & filters.command("restart"))
 async def restart(bot: Bot, msg: Message):
     await msg.reply('✅')
     return Config.HU_APP.restart()
 
 
-@bot.on_message(filters.private & filters.command("help"))
-async def start(_, msg: Message):
-    out = f"""
-Hello {msg.from_user.mention}, this is Pyrogram Session String Generator Bot \
-which gives you `SESSION_STRING` for your UserBot.
-
-It needs `API_ID` , `API_HASH` , `PHONE_NUMBER` and `One time Verification Code` \
-which will send to your `PHONE_NUMBER`.
-you have to put `OTP` in `1 2 3 4 5` this format.
-
-(C) Author: [Krishna Singhal](https://t.me/Krishna_Singhal) and \
-[UsergeTeam](https://t.me/TheUserge)
-Give a Star ⭐️ to [REPO](https://github.com/Krishna-Singhal/genStr) if you like this Bot.
-"""
-    await msg.reply(out, disable_web_page_preview=True)
 
 
 async def is_cancel(msg: Message, text: str):
