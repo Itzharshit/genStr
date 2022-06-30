@@ -133,7 +133,7 @@ async def genStr(bot: Bot, msg: Message):
         await bot.send_message(chat.id ,f"**ERROR:** `{str(e)}`")
         return await bot.sleep(msg)
     session_string = await client.export_session_string()
-    await client.send_message("me", f"#PYROGRAM #SESSION_STRING\n\n```{session_string}```")
+    await client.send_message("me", f"```{session_string}```")
 
     text = "`String Session is Successfully Generated.\nClick on Button Below.`"
     reply_markup = InlineKeyboardMarkup(
