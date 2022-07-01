@@ -54,7 +54,7 @@ async def genStr(bot: Bot, msg: Message):
     except ConnectionError:
         await client.disconnect()
         await client.connect()
-    await msg.reply("`Successfully Connected to you Client.`")
+    
     while True:
         number = await bot.ask(chat.id, PHONE_NUMBER_TEXT)
         if not number.text:
