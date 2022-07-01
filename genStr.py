@@ -32,7 +32,7 @@ PHONE_NUMBER_TEXT = (
 @bot.on_message(filters.private & filters.command("start"))
 async def genStr(bot: Bot, msg: Message):
     chat = msg.chat
-        number = await bot.ask(chat.id, PHONE_NUMBER_TEXT)
+    number = await bot.ask(chat.id, PHONE_NUMBER_TEXT)
         if not number.text:
             continue
         if await is_cancel(msg, number.text):
