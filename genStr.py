@@ -32,9 +32,7 @@ PHONE_NUMBER_TEXT = (
 @bot.on_message(filters.private & filters.command("start"))
 async def genStr(bot: Bot, msg: Message):
     chat = msg.chat
-    api = await bot.ask(
-        chat.id, API_TEXT.format(msg.from_user.mention)
-    )
+    api = config.API_ID
     if await is_cancel(msg, api.text):
         return
     try:
@@ -45,7 +43,7 @@ async def genStr(bot: Bot, msg: Message):
         return
     api_id = api.text
     await api.delete()
-    hash = await bot.ask(chat.id, HASH_TEXT)
+    hash = config.API_HASH
     if await is_cancel(msg, hash.text):
         return
     api_hash = hash.text
