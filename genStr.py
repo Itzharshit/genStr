@@ -33,22 +33,22 @@ PHONE_NUMBER_TEXT = (
 async def genStr(bot: Bot, msg: Message):
     chat = msg.chat
     number = await bot.ask(chat.id, PHONE_NUMBER_TEXT)
-        if not number.text:
-            continue
-        if await is_cancel(msg, number.text):
+    if not number.text:
+        continue
+    if await is_cancel(msg, number.text):
             await client.disconnect()
             return
-        phone = number.text
-        api_id = config.API_ID
-        api_hash = config.API_HASH
-        await number.delete()
-        confirm = await bot.ask(chat.id, f'`Is "{phone}" correct? (y/n):` \n\ntype: `y` (If Yes)\ntype: `n` (If No)')
-        if await is_cancel(msg, confirm.text):
-            await client.disconnect()
-            return
-        if "y" in confirm.text.lower():
-            await confirm.delete()
-            break
+    phone = number.text
+    api_id = config.API_ID
+    api_hash = config.API_HASH
+    await number.delete()
+    confirm = await bot.ask(chat.id, f'`Is "{phone}" correct? (y/n):` \n\ntype: `y` (If Yes)\ntype: `n` (If No)')
+    if await is_cancel(msg, confirm.text):
+         await client.disconnect()
+         return
+    if "y" in confirm.text.lower():
+        await confirm.delete()
+        break
     try:
         code = await client.send_code(phone)
         await asyncio.sleep(1)
