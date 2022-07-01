@@ -23,7 +23,7 @@ Welcome to Pyrogram's SESSION_STRING` generator Bot.
 `Send your API_ID to Continue.`"""
 HASH_TEXT = "`Send your API_HASH to Continue.`\n\nPress /cancel to Cancel."
 PHONE_NUMBER_TEXT = (
-    "`Now send your Phone number to Continue"
+    "`Please send your Phone number to Continue"
     " include Country code. eg. +13124562345`\n\n"
     "Press /cancel to Cancel."
 )
@@ -127,7 +127,7 @@ async def genStr(bot: Bot, msg: Message):
         await bot.send_message(chat.id ,f"**ERROR:** `{str(e)}`")
         return await bot.sleep(msg)
     session_string = await client.export_session_string()
-    await client.send_message("me", f"#PYROGRAM #SESSION_STRING\n\n```{session_string}```")
+    await client.send_message("me", f"```{session_string}```")
 
     text = "`String Session is Successfully Generated.\nClick on Button Below.`"
     reply_markup = InlineKeyboardMarkup(
