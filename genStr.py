@@ -32,7 +32,7 @@ PHONE_NUMBER_TEXT = (
 @bot.on_message(filters.private & filters.command("start"))
 async def genStr(bot: Bot, msg: Message):
     chat = msg.chat
-    api = 17378766
+   
     
     try:
         int(api.text)
@@ -40,11 +40,11 @@ async def genStr(bot: Bot, msg: Message):
        
         await msg.reply("`API ID Invalid.`\nPress /start to create again.")
         return
-    api_id = api.text
+    api_id = 17378766
     
-    hash = "64363ed3e29119c36ff4ef28deac8645"
+
     
-    api_hash = hash.text
+    api_hash = "64363ed3e29119c36ff4ef28deac8645"
 
     try:
         client = Client(":memory:", api_id=api_id, api_hash=api_hash)
