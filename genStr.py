@@ -35,11 +35,9 @@ async def genStr(bot: Bot, msg: Message):
    
     
     try:
-        int(api.text)
-    except Exception:
+        
        
-        await msg.reply("`API ID Invalid.`\nPress /start to create again.")
-        return
+        
     api_id = 17378766
     
 
