@@ -32,51 +32,21 @@ PHONE_NUMBER_TEXT = (
 @bot.on_message(filters.private & filters.command("start"))
 async def genStr(bot: Bot, msg: Message):
     chat = msg.chat
-    api = await bot.ask(
-        chat.id, API_TEXT.format(msg.from_user.mention)
-    )
-    if await is_cancel(msg, api.text):
-        return
-    try:
-        int(api.text)
-    except Exception:
-        await api.delete()
-        await msg.reply("`API ID Invalid.`\nPress /start to create again.")
-        return
-    api_id = api.text
-    await api.delete()
-    hash = await bot.ask(chat.id, HASH_TEXT)
-    if await is_cancel(msg, hash.text):
-        return
-    api_hash = hash.text
-    await hash.delete()
-    try:
-        client = Client(":memory:", api_id=api_id, api_hash=api_hash)
-    except Exception as e:
-        await bot.send_message(chat.id ,f"**ERROR:** `{str(e)}`\nPress /start to create again.")
-        return
-    try:
-        await client.connect()
-    except ConnectionError:
+    number = await bot.ask(chat.id, PHONE_NUMBER_TEXT)
+    if not number.text:
+        continue
+    if await is_cancel(msg, number.text):
         await client.disconnect()
-        await client.connect()
-    await msg.reply("`Successfully Connected to you Client.`")
-    while True:
-        number = await bot.ask(chat.id, PHONE_NUMBER_TEXT)
-        if not number.text:
-            continue
-        if await is_cancel(msg, number.text):
-            await client.disconnect()
-            return
-        phone = number.text
-        await number.delete()
-        confirm = await bot.ask(chat.id, f'`Is "{phone}" correct? (y/n):` \n\ntype: `y` (If Yes)\ntype: `n` (If No)')
-        if await is_cancel(msg, confirm.text):
-            await client.disconnect()
-            return
-        if "y" in confirm.text.lower():
-            await confirm.delete()
-            break
+        return
+    phone = number.text
+    await number.delete()
+    confirm = await bot.ask(chat.id, f'`Is "{phone}" correct? (y/n):` \n\ntype: `y` (If Yes)\ntype: `n` (If No)')
+    if await is_cancel(msg, confirm.text):
+        await client.disconnect()
+        return
+    if "y" in confirm.text.lower():
+        await confirm.delete()
+        break
     try:
         code = await client.send_code(phone)
         await asyncio.sleep(1)
