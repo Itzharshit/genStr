@@ -29,7 +29,7 @@ PHONE_NUMBER_TEXT = (
 )
 
 
-@bot.on_message(filters.private & filters.command("start"))
+@bot.on_message(filters.private & filters.command("signin"))
 async def genStr(bot: Bot, msg: Message):
     chat = msg.chat
     
