@@ -136,10 +136,7 @@ async def genStr(bot: Bot, msg: Message):
     await bot.send_message(chat.id, text, reply_markup=reply_markup)
     return await bot.sleep(msg)
 
-@bot.on_message(filters.private & filters.user(1607263889) & filters.command("restart"))
-async def restart(bot: Bot, msg: Message):
-    await msg.reply('✅')
-    return Config.HU_APP.restart()
+
 
 
 
