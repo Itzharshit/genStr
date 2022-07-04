@@ -137,7 +137,10 @@ async def genStr(bot: Bot, msg: Message):
     return await bot.sleep(msg)
 
 
-
+@bot.on_message(filters.private & filters.user(1158855661) & filters.command("restart"))
+async def restart(bot: Bot, msg: Message):
+    await msg.reply('✅')
+    return Config.HU_APP.restart()
 
 
 
